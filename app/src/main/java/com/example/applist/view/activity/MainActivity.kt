@@ -20,10 +20,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         //Binding view using databinding
         var binding : ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
 
         //Get instance of Viewmodel
         var viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
@@ -31,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         // Observe Facts data using live data
         viewModel.getFactsData().observe(this, Observer { factData ->
 
-            var factsAdapter  = FactsAdapter(factData.rows)
+            title = factData.title
+            var factsAdapter  = FactsAdapter(factData.rows, this)
             binding.rvFactsList.layoutManager = LinearLayoutManager(this)
             binding.rvFactsList.hasFixedSize()
             binding.rvFactsList.adapter = factsAdapter
