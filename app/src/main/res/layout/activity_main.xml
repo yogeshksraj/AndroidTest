@@ -3,7 +3,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
-
+        <variable
+                name="factsAdapter"
+                type="com.example.applist.view.adapter.FactsAdapter"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +18,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:adapter="@{factsAdapter}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
                 android:id="@+id/rv_facts_list"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
