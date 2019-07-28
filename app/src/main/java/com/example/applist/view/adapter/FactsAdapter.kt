@@ -2,7 +2,9 @@ package com.example.applist.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil.inflate
 import androidx.recyclerview.widget.RecyclerView
+import com.example.applist.R
 import com.example.applist.databinding.AdapterFactsBinding
 import com.example.applist.model.FactsModel
 
@@ -16,7 +18,7 @@ class FactsAdapter(val factsList: List<FactsModel>) : RecyclerView.Adapter<Facts
 
         // Inflate view with data binding
         var inflater = LayoutInflater.from(parent.context)
-        var adapterFactsBinding = AdapterFactsBinding.inflate(inflater)
+        var adapterFactsBinding : AdapterFactsBinding = inflate(inflater, R.layout.adapter_facts, parent, false)
         return FactsViewHolder(adapterFactsBinding)
 
     }
