@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil.inflate
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.applist.R
 import com.example.applist.databinding.AdapterFactsBinding
 import com.example.applist.model.FactsModel
-import com.squareup.picasso.Picasso
 
 /*
 * Code by Yogesh
 * */
 
-class FactsAdapter(val factsList: List<FactsModel>, val context: Context) :
+class FactsAdapter(val factsList: List<FactsModel>) :
     RecyclerView.Adapter<FactsAdapter.FactsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FactsViewHolder {
@@ -33,11 +33,11 @@ class FactsAdapter(val factsList: List<FactsModel>, val context: Context) :
     override fun onBindViewHolder(holder: FactsViewHolder, position: Int) {
 
         holder.bind(factsList.get(position))
-        // Set image using picasso
-        Picasso.with(context)
+        // Set image using Glide
+        Glide.with(holder.adapterFactsBinding.imageView.getContext())
             .load(factsList.get(position).imageHref)
             .placeholder(R.drawable.placeholder)
-            .into(holder.adapterFactsBinding.imageView)
+            .into(holder.adapterFactsBinding.imageView);
 
 
     }

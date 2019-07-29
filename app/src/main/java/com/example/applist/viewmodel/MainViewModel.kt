@@ -1,6 +1,10 @@
 package com.example.applist.viewmodel
 
 import android.app.Application
+import android.view.View
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
+import androidx.databinding.ObservableInt
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.applist.model.FactsListModel
@@ -16,10 +20,12 @@ import retrofit2.Response
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
 
+    var factData : MutableLiveData<FactsListModel> = MutableLiveData()
+    var showLoading : ObservableInt = ObservableInt()
+
     fun getFactsData(): MutableLiveData<FactsListModel>{
 
         // calling retrofit method to fetch API data
-        var factData : MutableLiveData<FactsListModel> = MutableLiveData()
         NetworkService.instance.getFacts()
             .enqueue(object : Callback<FactsListModel>{
                 override fun onFailure(call: Call<FactsListModel>, t: Throwable) {
